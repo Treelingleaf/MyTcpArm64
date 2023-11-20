@@ -34,7 +34,7 @@ typedef struct
 Packet create_packet(PacketType type, uint8_t flag, const uint8_t *data, size_t data_size);
 void free_packet(Packet *packet); // 添加 const 修饰符
 
-// 解析接受的数据包
+// 解析接受的数据包，在解析接口里调用了free_packet，不需要再手动释放
 void parse_received_packet(Packet *received_packet);
 
 // 发送不同数据类型的数据包
