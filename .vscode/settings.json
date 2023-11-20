@@ -1,0 +1,7 @@
+{
+  "files.associations": {
+    "stdio.h": "c",
+    "tcp_server.h": "c",
+    "mytcparm64.h": "c"
+  }
+}
