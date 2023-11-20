@@ -30,26 +30,28 @@ typedef struct
     uint8_t flag;
 } Packet;
 
+// 创建数据包和释放数据包
 Packet create_packet(PacketType type, uint8_t flag, const uint8_t *data, size_t data_size);
 void free_packet(Packet *packet); // 添加 const 修饰符
 
-// 处理接受的数据包
+// 解析接受的数据包
 void parse_received_packet(Packet *received_packet);
 
-// 顶层封装
+// 发送不同数据类型的数据包
 void send_notification(int connect_socket, const char *message);
 void send_image(int connect_socket, const char *image_path);
 void send_file(int connect_socket, const char *file_path);
 
+// 服务器的创建、接收连接、关闭服务器
 int tcp_server_create(const char *bind_address, int port);
 int tcp_server_accept(int server_socket);
-ssize_t tcp_server_receive(int client_socket, char *buffer, size_t buffer_size);
-ssize_t tcp_server_send(int client_socket, const char *data, size_t data_size);
 void tcp_server_close(int server_socket);
 
+// 客户端连接服务器和关闭连接
 int tcp_client_connect(const char *server_address, int port);
 void tcp_client_close(int client_socket);
 
+// 数据包的收发，双端通用
 ssize_t tcp_receive_packet(int socket, Packet *packet);
 ssize_t tcp_send_packet(int socket, const Packet *packet);
 

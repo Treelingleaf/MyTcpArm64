@@ -25,18 +25,17 @@ MyTcpArm64 支持以下数据包类型：
 2. **图片数据（IMAGE）：** 用于传输图片二进制数据。
 3. **文件数据（FILE_DATA）：** 用于传输文件二进制数据。
 
-## 如何使用
-
 ### 示例
 
 以下是一个数据包的示例：
 
-```plaintext
+````plaintext
 Type: NOTIFICATION
 Flag: 1
 Data Size: 16
 Data: "Hello, world!"
 
+## 如何使用
 
 ### 编译
 
@@ -44,7 +43,7 @@ Data: "Hello, world!"
 
 ```bash
 make
-```
+````
 
 ### 示例
 
@@ -62,10 +61,8 @@ make
 
 ## 示例代码
 
-请查看 `main.c` 文件以获取关于如何使用库的示例代码。
+请查看 `server.c`和`client.c` 文件以获取关于如何使用库的示例代码。
 
 ## 贡献
 
 欢迎贡献代码和提出问题！请查看 [贡献指南](CONTRIBUTING.md) 获取更多信息。
-
-
