@@ -1,8 +1,29 @@
-EXTRA_CFLAGS := -D DEBUG
-obj-y += $(patsubst %.c,%.o,$(wildcard *.c))
+CC = gcc
+CFLAGS = -Wall -Wextra -std=c99
+LIBS = -lm
 
-# 列出要排除的文件
-exclude-files := 
+# List of source files
+SRCS = tcp_server.c packet.c
 
-# # 从obj-y中移除要排除的文件
-obj-y := $(filter-out $(patsubst %.c,%.o,$(exclude-files)),$(obj-y))
+# List of header files
+HDRS = tcp_server.h packet.h
+
+# Object files
+OBJS = $(SRCS:.c=.o)
+
+# Name of the library
+LIB_NAME = libMyTcpArm64.a
+
+# Target for building the library
+$(LIB_NAME): $(OBJS)
+	ar rcs $(LIB_NAME) $(OBJS)
+
+# Target for building the object files
+%.o: %.c $(HDRS)
+	$(CC) $(CFLAGS) -c $< -o $@
+
+# Target for cleaning up the build
+clean:
+	rm -f $(OBJS) $(LIB_NAME)
+
+.PHONY: clean
